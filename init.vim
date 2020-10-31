@@ -1,6 +1,8 @@
-runtime! custom_preconfig/*.vim
-runtime! common_config/*.vim
-runtime! custom_config/*.vim
+runtime! config/plugins.vim
+runtime! config/functions.vim
+runtime! config/mappings.vim
+runtime! config/general.vim
+runtime! config/indentations.vim
 
 " for git, add spell checking and automatic wrapping at 72 columns
 autocmd Filetype gitcommit setlocal spell textwidth=72

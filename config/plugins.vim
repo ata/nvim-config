@@ -63,24 +63,9 @@ call plug#begin('~/.vim/plugged')
     return !col || getline('.')[col - 1]  =~# '\s'
   endfunction
 
-" Fuzzy Finder
-  Plug 'Shougo/unite.vim'
-
 " Slim
   Plug 'slim-template/vim-slim'
     au BufNewFile,BufRead *.slim set filetype=slim
-
-" Less
-  Plug 'groenewege/vim-less'
-    au BufNewFile,BufRead *.less set filetype=less
-
-" Handlebars, Mustache, and Friends
-  Plug 'mustache/vim-mustache-handlebars'
-  au  BufNewFile,BufRead *.mustache,*.handlebars,*.hbs,*.hogan,*.hulk,*.hjs set filetype=html syntax=mustache | runtime! ftplugin/mustache.vim ftplugin/mustache*.vim ftplugin/mustache/*.vim
-
-" Coffee script
-  Plug 'kchmck/vim-coffee-script'
-    au BufNewFile,BufRead *.coffee set filetype=coffee
 
 " AG aka The Silver Searcher
   Plug 'rking/ag.vim'
@@ -120,30 +105,6 @@ call plug#begin('~/.vim/plugged')
 " GitGutter
   Plug 'airblade/vim-gitgutter'
 
-" Tabular for aligning text
-  Plug 'godlygeek/tabular'
-    function! CustomTabularPatterns()
-      if exists('g:tabular_loaded')
-        AddTabularPattern! symbols         / :/l0
-        AddTabularPattern! hash            /^[^>]*\zs=>/
-        AddTabularPattern! chunks          / \S\+/l0
-        AddTabularPattern! assignment      / = /l0
-        AddTabularPattern! comma           /^[^,]*,/l1
-        AddTabularPattern! colon           /:\zs /l0
-        AddTabularPattern! options_hashes  /:\w\+ =>/
-      endif
-    endfunction
-
-    autocmd VimEnter * call CustomTabularPatterns()
-
-    " shortcut to align text with Tabular
-    nmap <Leader>= :Tabularize /=<CR>
-    vmap <Leader>= :Tabularize /=<CR>
-    nmap <Leader>> :Tabularize /=><CR>
-    vmap <Leader>> :Tabularize /=><CR>
-    nmap <Leader>; :Tabularize /:<CR>
-    vmap <Leader>; :Tabularize /:<CR>
-
 " Unimpaired for keymaps for quicky manipulating lines and files
   Plug 'tpope/vim-unimpaired'
     " Bubble single lines
@@ -156,14 +117,17 @@ call plug#begin('~/.vim/plugged')
 
 
 " Syntastic for catching syntax errors on save
-  Plug 'scrooloose/syntastic'
-    let g:syntastic_enable_signs=1
-    " let g:syntastic_quiet_messages = {'level': 'warning'}
-    " syntastic is too slow for haml and sass
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_mode_map = { 'mode': 'active',
-                               \ 'passive_filetypes': ['haml','scss','sass'] }
-    let g:syntastic_ruby_checkers = ['rubocop']
+  "Plug 'scrooloose/syntastic'
+  "  let g:syntastic_enable_signs=1
+  "  " let g:syntastic_quiet_messages = {'level': 'warning'}
+  "  " syntastic is too slow for haml and sass
+  "  let g:syntastic_check_on_open = 1
+  "  let g:syntastic_mode_map = { 'mode': 'active',
+  "                             \ 'passive_filetypes': ['haml','scss','sass'] }
+  "  let g:syntastic_ruby_checkers = ['rubocop']
+
+" ALE (Asynchronous Lint Engine) is a plugin providing linting 
+  Plug 'dense-analysis/ale'
 
 " Ansible
   Plug 'pearofducks/ansible-vim'
@@ -213,50 +177,17 @@ call plug#begin('~/.vim/plugged')
 " php-cs-fixer (for indentation)
   Plug 'stephpy/vim-php-cs-fixer'
 
-" Fix indentation
-  autocmd FileType javascript set tabstop=2|set softtabstop=2|set shiftwidth=2
-  au BufEnter *.js set ai sw=2 ts=2 sta et fo=croql
-
-  autocmd FileType less set tabstop=2|set softtabstop=2|set shiftwidth=2
-  au BufEnter *.less set ai sw=2 ts=2 sta et fo=croql
-  au BufEnter *.css set ai sw=2 ts=2 sta et fo=croql
-
-  autocmd FileType scss set tabstop=2|set softtabstop=2|set shiftwidth=2
-  au BufEnter *.scss set ai sw=2 ts=2 sta et fo=croql
-
-  autocmd FileType groovy set tabstop=2|set softtabstop=2|set shiftwidth=4
-  au BufEnter *.groovy set ai sw=4 ts=4 sta et fo=croql
+" Toml
+  Plug 'cespare/vim-toml'
 
 " Color indentation
   Plug 'nathanaelkane/vim-indent-guides'
 
+" Locate test file
   Plug 'janko-m/vim-test'
-
-  function! s:cat(filename) abort
-    return system('cat '.a:filename)
-  endfunction
-
-  function! VagrantTransform(cmd) abort
-    if !empty(glob('Vagrantfile'))
-      let vagrant_project = get(matchlist(s:cat('Vagrantfile'), '\vconfig\.vm\.synced_folder \".+\", \"(.+)\",\s+disabled:\s+false'), 1)
-      return 'vagrant ssh --command '.shellescape('cd '.vagrant_project.'; '.a:cmd)
-    else
-      return a:cmd
-    endif
-  endfunction
-
-  let g:test#custom_transformations = {'vagrant': function('VagrantTransform')}
-  let g:test#transformation = 'vagrant'
 
   nmap <silent> <leader>T :TestFile<CR>
   nmap <silent> <leader>F :TestNearest<CR>
-
-" syntastic for eslint and stylelint
-  Plug 'vim-syntastic/syntastic'
-  let g:syntastic_bash_hack = 0
-  let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['scss','javascript']}
-  let g:syntastic_javascript_checkers = ['eslint']
-  let g:syntastic_scss_checkers = ['stylelint']
 
   Plug 'modille/groovy.vim'
 

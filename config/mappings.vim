@@ -5,11 +5,6 @@
 " close all other windows (in the current tab)
   nmap gW :only<cr>
 
-" shortcuts for frequenly used files
-  nmap gs :e db/schema.rb<cr>
-  nmap gr :e config/routes.rb<cr>
-  nmap gm :e Gemfile<cr>
-
 " nerdcommenter
   nmap gcc :call NERDComment(0,"toggle")<cr>
   vmap gc :call NERDComment(0,"toggle")<cr>
