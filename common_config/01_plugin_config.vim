@@ -35,7 +35,6 @@ call plug#begin('~/.vim/plugged')
   map <Leader>b :Buffers<cr>
   map <C-B> :Buffers<cr>
 
-  Plug 'ap/vim-css-color'
   Plug 'digitaltoad/vim-pug'
   Plug 'leafgarland/typescript-vim'
 
@@ -51,8 +50,18 @@ call plug#begin('~/.vim/plugged')
   Plug 'easymotion/vim-easymotion'
 
 " Code completion"
-  Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-  let g:ycm_autoclose_preview_window_after_completion = 1
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+  inoremap <silent><expr> <c-space> coc#refresh()
+
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+  endfunction
 
 " Fuzzy Finder
   Plug 'Shougo/unite.vim'
@@ -156,7 +165,9 @@ call plug#begin('~/.vim/plugged')
                                \ 'passive_filetypes': ['haml','scss','sass'] }
     let g:syntastic_ruby_checkers = ['rubocop']
 
-
+" Ansible
+  Plug 'pearofducks/ansible-vim'
+  au BufRead,BufNewFile */provisioning/**/*.yml set filetype=yaml.ansible
 
 " gundo for awesome undo tree visualization
   Plug 'sjl/gundo.vim'
@@ -196,17 +207,8 @@ call plug#begin('~/.vim/plugged')
 " MultipleCursor
   Plug 'terryma/vim-multiple-cursors'
 
-" Blade syntax highlighting
-  Plug 'xsbeats/vim-blade'
-
-" facebook
-  Plug 'mxw/vim-xhp'
-  autocmd FileType php set tabstop=4|set softtabstop=4|set shiftwidth=4
-  autocmd FileType hack set tabstop=4|set softtabstop=4|set shiftwidth=4
-  au BufEnter *.php set ai sw=4 ts=4 sta et fo=croql
-  au BufEnter *.hh set ai sw=4 ts=4 sta et fo=croql
-  au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
-
+" Vertical Line
+  Plug 'Yggdroot/indentLine'
 
 " php-cs-fixer (for indentation)
   Plug 'stephpy/vim-php-cs-fixer'
@@ -222,8 +224,8 @@ call plug#begin('~/.vim/plugged')
   autocmd FileType scss set tabstop=2|set softtabstop=2|set shiftwidth=2
   au BufEnter *.scss set ai sw=2 ts=2 sta et fo=croql
 
-  autocmd FileType xbt.php set tabstop=2|set softtabstop=2|set shiftwidth=2
-  au BufEnter *.xbt.php set ai sw=2 ts=2 sta et fo=croql
+  autocmd FileType groovy set tabstop=2|set softtabstop=2|set shiftwidth=4
+  au BufEnter *.groovy set ai sw=4 ts=4 sta et fo=croql
 
 " Color indentation
   Plug 'nathanaelkane/vim-indent-guides'
@@ -255,6 +257,8 @@ call plug#begin('~/.vim/plugged')
   let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['scss','javascript']}
   let g:syntastic_javascript_checkers = ['eslint']
   let g:syntastic_scss_checkers = ['stylelint']
+
+  Plug 'modille/groovy.vim'
 
 
 call plug#end()
