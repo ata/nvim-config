@@ -115,17 +115,6 @@ call plug#begin('~/.vim/plugged')
     vmap <C-Up> [egv
     vmap <C-Down> ]egv
 
-
-" Syntastic for catching syntax errors on save
-  "Plug 'scrooloose/syntastic'
-  "  let g:syntastic_enable_signs=1
-  "  " let g:syntastic_quiet_messages = {'level': 'warning'}
-  "  " syntastic is too slow for haml and sass
-  "  let g:syntastic_check_on_open = 1
-  "  let g:syntastic_mode_map = { 'mode': 'active',
-  "                             \ 'passive_filetypes': ['haml','scss','sass'] }
-  "  let g:syntastic_ruby_checkers = ['rubocop']
-
 " ALE (Asynchronous Lint Engine) is a plugin providing linting
   Plug 'dense-analysis/ale'
 
