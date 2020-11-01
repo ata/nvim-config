@@ -126,8 +126,11 @@ call plug#begin('~/.vim/plugged')
   "                             \ 'passive_filetypes': ['haml','scss','sass'] }
   "  let g:syntastic_ruby_checkers = ['rubocop']
 
-" ALE (Asynchronous Lint Engine) is a plugin providing linting 
+" ALE (Asynchronous Lint Engine) is a plugin providing linting
   Plug 'dense-analysis/ale'
+
+" Format Code
+  Plug 'sbdchd/neoformat'
 
 " Ansible
   Plug 'pearofducks/ansible-vim'
@@ -170,6 +173,10 @@ call plug#begin('~/.vim/plugged')
 
 " MultipleCursor
   Plug 'terryma/vim-multiple-cursors'
+
+" Linter
+Plug 'dense-analysis/ale'
+
 
 " Vertical Line
   Plug 'Yggdroot/indentLine'
