@@ -22,6 +22,7 @@
 " use 2 spaces for tabs
   set expandtab tabstop=4 softtabstop=4 shiftwidth=4
   set smarttab
+  au BufEnter *.yaml set ai sw=2 ts=2 sta et fo=coql
 
 " enable line numbers, and don't make them any wider than necessary
   set number numberwidth=2
@@ -46,6 +47,7 @@
 
 " pick up external file modifications
   set autoread
+  autocmd FocusGained * silent! checktime
 
 " don't abandon buffers when unloading
   set hidden

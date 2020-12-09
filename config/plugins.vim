@@ -1,6 +1,6 @@
 " Plugins are managed by Plug. Once VIM is open run :BundleInstall to
 " install plugins.
-call plug#begin('~/.vim/plugged')
+call plug#begin()
 
 " Nerd commenter using default align left
   Plug 'scrooloose/nerdcommenter'
@@ -50,7 +50,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'easymotion/vim-easymotion'
 
 " Code completion"
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'neoclide/coc.nvim'
   inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -115,9 +115,6 @@ call plug#begin('~/.vim/plugged')
     vmap <C-Up> [egv
     vmap <C-Down> ]egv
 
-" ALE (Asynchronous Lint Engine) is a plugin providing linting
-  Plug 'dense-analysis/ale'
-
 " Format Code
   Plug 'sbdchd/neoformat'
 
@@ -162,10 +159,6 @@ call plug#begin('~/.vim/plugged')
 
 " MultipleCursor
   Plug 'terryma/vim-multiple-cursors'
-
-" Linter
-Plug 'dense-analysis/ale'
-
 
 " Vertical Line
   Plug 'Yggdroot/indentLine'
