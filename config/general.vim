@@ -23,6 +23,7 @@
   set expandtab tabstop=4 softtabstop=4 shiftwidth=4
   set smarttab
   au BufEnter *.yaml set ai sw=2 ts=2 sta et fo=coql
+  au BufEnter *.vim set ai sw=2 ts=2 sta et fo=coql
 
 " enable line numbers, and don't make them any wider than necessary
   set number numberwidth=2

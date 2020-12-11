@@ -49,19 +49,14 @@ call plug#begin()
 " Easy motion config
   Plug 'easymotion/vim-easymotion'
 
-" Code completion"
-  Plug 'neoclide/coc.nvim'
-  inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-  inoremap <silent><expr> <c-space> coc#refresh()
+" Linter
+  Plug 'dense-analysis/ale'
+  g:ale_disable_lsp = 1
 
-  function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-  endfunction
+" Code completion
+  Plug 'neoclide/coc.nvim'
+  " All config is in config/coc.vim
+
 
 " Slim
   Plug 'slim-template/vim-slim'
