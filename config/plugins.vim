@@ -175,6 +175,8 @@ call plug#begin()
 
   Plug 'modille/groovy.vim'
 
+  Plug 'git@github.com:godlygeek/tabular.git'
+
 
 call plug#end()
 

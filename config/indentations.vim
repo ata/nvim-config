@@ -19,3 +19,4 @@
   au BufEnter *.yaml set ai sw=2 ts=2 sta et fo=coql
   au BufEnter *.vim set ai sw=2 ts=2 sta et fo=coql
   au BufEnter *.tf set ai sw=2 ts=2 sta et fo=coql
+  au BufEnter *.robot set ai sw=2 ts=2 sta et fo=coql
