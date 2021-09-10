@@ -6,8 +6,8 @@
   nmap gW :only<cr>
 
 " nerdcommenter
-  nmap gcc :call NERDComment(0,"toggle")<cr>
-  vmap gc :call NERDComment(0,"toggle")<cr>
+  nmap gcc :call nerdcommenter#Comment(0, "toggle")<cr>
+  vmap gc :call nerdcommenter#Comment(0, "toggle")<cr>
 
 " insert blank lines without going into insert mode
   nmap go o<esc>
