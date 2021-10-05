@@ -118,3 +118,12 @@
 
 " *.es6 is javascript file
   au BufRead,BufNewFile *.es6 set filetype=javascript
+
+" *.arb is ruby file
+  au BufRead,BufNewFile *.arb set filetype=ruby
+
+" All Dockerfile* is dockerfile
+  au BufRead,BufNewFile Dockerfile* set filetype=dockerfile
+
+" Cursor settings
+  set guicursor=n-v-c-sm:block,i-ci-ve:ver25-Cursor,r-cr-o:hor20
