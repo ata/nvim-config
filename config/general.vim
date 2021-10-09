@@ -95,6 +95,9 @@
   set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
   set list
 
+" Make clipboard work
+  set clipboard=unnamedplus
+
 " have the mouse enabled all the time
   set mouse=a
 
