@@ -53,6 +53,9 @@ Plug 'easymotion/vim-easymotion'
 Plug 'dense-analysis/ale'
 g:ale_disable_lsp = 1
 
+" For highlighting
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 " Code completion
 Plug 'neoclide/coc.nvim'
 " All config is in config/coc.vim
