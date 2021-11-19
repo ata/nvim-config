@@ -179,9 +179,6 @@ nmap <silent> <leader>F :TestNearest<CR>
 
 Plug 'modille/groovy.vim'
 
-Plug 'git@github.com:godlygeek/tabular.git'
-
-
 call plug#end()
 
 filetype plugin indent on
