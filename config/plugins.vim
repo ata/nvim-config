@@ -52,7 +52,8 @@ Plug 'easymotion/vim-easymotion'
 
 " Linter
 Plug 'dense-analysis/ale'
-g:ale_disable_lsp = 1
+let g:ale_disable_lsp = 1
+let b:ale_linters = ['eslint']
 
 " For highlighting
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
