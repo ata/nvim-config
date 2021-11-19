@@ -56,7 +56,7 @@ let g:ale_disable_lsp = 1
 let b:ale_linters = ['eslint']
 
 " For highlighting
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Code completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
