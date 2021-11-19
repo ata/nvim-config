@@ -5,6 +5,7 @@ set smarttab
 " Some code prefer to have it's own indentation
 autocmd FileType javascript set tabstop=2|set softtabstop=2|set shiftwidth=2
 au BufEnter *.js set ai sw=2 ts=2 sta et fo=croql
+au BufEnter *.jsx set ai sw=2 ts=2 sta et fo=croql
 
 autocmd FileType less set tabstop=2|set softtabstop=2|set shiftwidth=2
 au BufEnter *.less set ai sw=2 ts=2 sta et fo=croql
