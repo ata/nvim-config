@@ -58,7 +58,7 @@ g:ale_disable_lsp = 1
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Code completion
-Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " All config is in config/coc.vim
 
 
