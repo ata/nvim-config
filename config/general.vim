@@ -120,8 +120,14 @@ au BufRead,BufNewFile *.es6 set filetype=javascript
 " *.arb is ruby file
 au BufRead,BufNewFile *.arb set filetype=ruby
 
-" All Dockerfile* is dockerfile
-au BufRead,BufNewFile Dockerfile* set filetype=dockerfile
+" All Dockerfile* is dockerfile, and disable conceal
+au BufEnter,BufRead,BufNewFile Dockerfile* set filetype=dockerfile conceallevel=0
+
+" Disable conceal
+au BufEnter,BufRead,BufNewFile *.json set conceallevel=0
+
+"autocmd BufEnter *.json set conceallevel=0
+"autocmd BufEnter Dockerfile* set conceallevel=0
 
 " Cursor settings
 set guicursor=n-v-c-sm:block,i-ci-ve:ver25-Cursor,r-cr-o:hor20
