@@ -108,9 +108,6 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'
 " Thorfile, Rakefile, Vagrantfile, and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
 
-" JSON is JS
-au BufNewFile,BufRead *.json set ai filetype=javascript
-
 " *.hh is hack file (php)
 au BufRead,BufNewFile *.hh set filetype=php
 
@@ -128,6 +125,8 @@ au BufEnter,BufRead,BufNewFile *.json set conceallevel=0
 
 "autocmd BufEnter *.json set conceallevel=0
 "autocmd BufEnter Dockerfile* set conceallevel=0
+
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 
 " Cursor settings
 set guicursor=n-v-c-sm:block,i-ci-ve:ver25-Cursor,r-cr-o:hor20

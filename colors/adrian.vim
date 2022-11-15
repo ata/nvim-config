@@ -27,7 +27,6 @@
 "
 
 
-
 hi clear
 set background=dark
 if exists("syntax_on")
