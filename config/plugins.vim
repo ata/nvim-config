@@ -175,6 +175,8 @@ Plug 'nathanaelkane/vim-indent-guides'
 " Locate test file
 Plug 'janko-m/vim-test'
 
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 nmap <silent> <leader>T :TestFile<CR>
 nmap <silent> <leader>F :TestNearest<CR>
 
