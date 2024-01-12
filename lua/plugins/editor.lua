@@ -15,5 +15,9 @@ return {
     {
         "ntpeters/vim-better-whitespace",
     },
-
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        opts = {},
+    }
 }
