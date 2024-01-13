@@ -48,4 +48,10 @@ return {
             map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
         end
     },
+    {
+        "kdheepak/lazygit.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+    },
 }
