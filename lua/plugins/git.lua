@@ -1,15 +1,14 @@
-local function map(mode, l, r, opts)
-    opts = opts or {}
-    opts.buffer = bufnr
-    vim.keymap.set(mode, l, r, opts)
-end
-
-
 return {
     {
         "lewis6991/gitsigns.nvim",
         config = function()
             local gs = require('gitsigns')
+            local function map(mode, l, r, opts)
+                opts = opts or {}
+                opts.buffer = bufnr
+                vim.keymap.set(mode, l, r, opts)
+            end
+
             gs.setup()
 
             -- Navigation
@@ -53,8 +52,8 @@ return {
         dependencies = {
             "nvim-lua/plenary.nvim",
         },
-        config = function()
-            map('n', '<leader>lg', ':LazyGit<cr>', { desc = "Open LazyGit" })
-        end
+        keys = {
+            { '<leader>lg', ':LazyGit<cr>', desc = "Open LazyGit" }
+        },
     },
 }

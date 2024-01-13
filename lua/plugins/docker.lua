@@ -4,7 +4,7 @@ return {
     dependencies = {
         "MunifTanjim/nui.nvim",
     },
-    opts = {}, -- automatically calls `require("lazydocker").setup()`
+    opts = {},
     keys = {
         { "<leader>ld", ":LazyDocker<cr>", desc = "Open LazyDocker" },
     },
