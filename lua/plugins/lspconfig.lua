@@ -9,7 +9,16 @@ return {
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup {
-                ensure_installed = { "lua_ls", "solargraph", "pyright", "gopls" }
+                ensure_installed = {
+                    "lua_ls",
+                    "solargraph",
+                    "pyright",
+                    "ruff_lsp",
+                    "gopls",
+                    "dockerls",
+                    "docker_compose_language_service",
+                    "sqlls",
+                }
             }
         end
     },
@@ -22,7 +31,16 @@ return {
             lspconfig.lua_ls.setup {}
             lspconfig.solargraph.setup {}
             lspconfig.pyright.setup {}
+            lspconfig.ruff_lsp.setup {
+                on_attach = function(client, bufnr)
+                    -- Disable hover in favor of Pyright
+                    client.server_capabilities.hoverProvider = false
+                end
+            }
             lspconfig.gopls.setup {}
+            lspconfig.dockerls.setup {}
+            lspconfig.docker_compose_language_service.setup {}
+            lspconfig.sqlls.setup {}
 
             -- Auto Format only for some extensions
             vim.api.nvim_create_autocmd("BufWritePre", {
