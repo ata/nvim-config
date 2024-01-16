@@ -42,7 +42,15 @@ return {
             lspconfig.dockerls.setup {}
             lspconfig.docker_compose_language_service.setup {}
             lspconfig.sqlls.setup {}
-            lspconfig.helm_ls.setup {}
+            lspconfig.helm_ls.setup {
+                settings = {
+                    ['helm-ls'] = {
+                        yamlls = {
+                            path = "yaml-language-server",
+                        }
+                    }
+                }
+            }
 
             -- Auto Format only for some extensions
             vim.api.nvim_create_autocmd("BufWritePre", {

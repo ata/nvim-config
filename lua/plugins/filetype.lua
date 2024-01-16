@@ -3,8 +3,10 @@ return {
     opts = {
         overrides = {
             complex = {
-                ["docker-compose.*"] = "yaml.docker-compose",
-                ["Dockerfile*"] = "dockerfile",
+                ["docker-.*.yaml"] = "yaml.docker-compose",
+                ["docker-.*.yml"] = "yaml.docker-compose",
+                ["Dockerfile.*"] = "dockerfile",
+                ["templates/.*.yaml"] = "helm",
             },
         }
     }
