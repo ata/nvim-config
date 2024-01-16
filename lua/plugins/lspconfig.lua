@@ -18,6 +18,7 @@ return {
                     "dockerls",
                     "docker_compose_language_service",
                     "sqlls",
+                    "helm_ls",
                 }
             }
         end
@@ -41,6 +42,7 @@ return {
             lspconfig.dockerls.setup {}
             lspconfig.docker_compose_language_service.setup {}
             lspconfig.sqlls.setup {}
+            lspconfig.helm_ls.setup {}
 
             -- Auto Format only for some extensions
             vim.api.nvim_create_autocmd("BufWritePre", {
