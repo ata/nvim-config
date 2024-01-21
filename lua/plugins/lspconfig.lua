@@ -1,9 +1,9 @@
 return {
     {
         "williamboman/mason.nvim",
-        config = function()
-            require("mason").setup()
-        end
+        opts = {
+            PATH = 'append'
+        },
     },
     {
         "williamboman/mason-lspconfig.nvim",
