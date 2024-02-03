@@ -20,6 +20,7 @@ return {
                     "sqlls",
                     "helm_ls",
                     "clangd",
+                    "groovyls"
                 }
             }
         end
@@ -144,6 +145,11 @@ return {
                 }
             }
             lspconfig.clangd.setup {
+                capabilities = cmp_capabilities,
+                on_attach = on_attach,
+            }
+
+            lspconfig.groovyls.setup {
                 capabilities = cmp_capabilities,
                 on_attach = on_attach,
             }
