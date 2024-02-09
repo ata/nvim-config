@@ -20,7 +20,8 @@ return {
                     "sqlls",
                     "helm_ls",
                     "clangd",
-                    "groovyls"
+                    "groovyls",
+                    "rust_analyzer",
                 }
             }
         end
@@ -150,6 +151,11 @@ return {
             }
 
             lspconfig.groovyls.setup {
+                capabilities = cmp_capabilities,
+                on_attach = on_attach,
+            }
+
+            lspconfig.rust_analyzer.setup {
                 capabilities = cmp_capabilities,
                 on_attach = on_attach,
             }
