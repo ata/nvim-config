@@ -13,7 +13,7 @@ return {
                     "lua_ls",
                     "solargraph",
                     "pyright",
-                    "ruff_lsp",
+                    "ruff",
                     "gopls",
                     "dockerls",
                     "docker_compose_language_service",
@@ -112,7 +112,7 @@ return {
                 capabilities = cmp_capabilities,
                 on_attach = on_attach,
             }
-            lspconfig.ruff_lsp.setup {
+            lspconfig.ruff.setup {
                 on_attach = function(client, bufnr)
                     -- Disable hover in favor of Pyright
                     client.server_capabilities.hoverProvider = false
