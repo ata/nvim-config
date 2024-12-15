@@ -40,9 +40,10 @@ return {
                 "bash",
                 "lua",
                 "vim",
-                -- "dockerfile",
+                "dockerfile",
                 "gitignore",
                 "query",
+                "go",
             },
             incremental_selection = {
                 enable = true,

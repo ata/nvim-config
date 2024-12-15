@@ -7,6 +7,7 @@ vim.filetype.add({
     },
     pattern = {
         ['docker-.*.ya?ml'] = 'yaml.docker-compose',
-        ['templates/.*.yaml'] = 'helm'
+        ['Dockerfile(.*)?'] = 'dockerfile',
+        ['templates/.*.yaml'] = 'helm',
     },
 })
