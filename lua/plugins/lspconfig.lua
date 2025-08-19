@@ -1,30 +1,35 @@
 return {
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         opts = {
             PATH = 'append'
         },
     },
     {
-        "williamboman/mason-lspconfig.nvim",
-        config = function()
-            require("mason-lspconfig").setup {
-                ensure_installed = {
-                    "lua_ls",
-                    "solargraph",
-                    "pyright",
-                    "ruff",
-                    "gopls",
-                    "dockerls",
-                    "docker_compose_language_service",
-                    "sqlls",
-                    "helm_ls",
-                    "clangd",
-                    "groovyls",
-                    "rust_analyzer",
-                }
-            }
-        end
+        "mason-org/mason-lspconfig.nvim",
+        opts = {
+            ensure_installed = {
+                "lua_ls",
+                "solargraph",
+                "pyright",
+                "ruff",
+                "gopls",
+                "dockerls",
+                "docker_compose_language_service",
+                "sqlls",
+                "helm_ls",
+                "clangd",
+                "groovyls",
+                "rust_analyzer",
+            },
+        },
+
+        dependencies = {
+            {
+                "mason-org/mason.nvim", opts = {}
+            },
+            "neovim/nvim-lspconfig",
+        },
     },
     {
         "neovim/nvim-lspconfig",
@@ -136,7 +141,12 @@ return {
             }
             lspconfig.helm_ls.setup {
                 capabilities = cmp_capabilities,
-                on_attach = on_attach,
+                on_attach = function(client, bufnr)
+                    on_attach(client, bufnr)
+                    -- Disable formatting for YAML files
+                    client.server_capabilities.documentFormattingProvider = false
+                    client.server_capabilities.documentRangeFormattingProvider = false
+                end,
                 settings = {
                     ['helm-ls'] = {
                         yamlls = {
