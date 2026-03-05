@@ -22,6 +22,7 @@ return {
                 "groovyls",
                 "rust_analyzer",
             },
+            automatic_enable = true,
         },
 
         dependencies = {
@@ -39,67 +40,69 @@ return {
             { "antosha417/nvim-lsp-file-operations", config = true },
         },
         config = function()
-            local lspconfig = require("lspconfig")
             local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
-            local keymap = vim.keymap -- for conciseness
+            local keymap = vim.keymap
             local opts = { noremap = true, silent = true }
             local on_attach = function(client, bufnr)
                 opts.buffer = bufnr
 
-                -- set keybinds
                 opts.desc = "Show LSP references"
-                keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
+                keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts)
 
                 opts.desc = "Go to declaration"
-                keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
+                keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 
                 opts.desc = "Show LSP definitions"
-                keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
+                keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
 
                 opts.desc = "Show LSP implementations"
-                keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
+                keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
 
                 opts.desc = "Show LSP type definitions"
-                keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
+                keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
 
                 opts.desc = "See available code actions"
-                keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
+                keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 
                 opts.desc = "Smart rename"
-                keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
+                keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
 
                 opts.desc = "Show buffer diagnostics"
-                keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
+                keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
 
                 opts.desc = "Show line diagnostics"
-                keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
+                keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
 
                 opts.desc = "Go to previous diagnostic"
-                keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
+                keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 
                 opts.desc = "Go to next diagnostic"
-                keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
+                keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 
                 opts.desc = "Show documentation for what is under cursor"
-                keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
+                keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
                 opts.desc = "Restart LSP"
-                keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+                keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
             end
 
             local cmp_capabilities = cmp_nvim_lsp.default_capabilities()
-            lspconfig.lua_ls.setup {
+
+            -- Global defaults for all servers
+            vim.lsp.config('*', {
                 capabilities = cmp_capabilities,
                 on_attach = on_attach,
+            })
+
+            -- Per-server overrides
+            vim.lsp.config('lua_ls', {
                 settings = {
                     Lua = {
-                        -- make the language server recognize "vim" global
                         diagnostics = {
                             globals = { "vim" },
                         },
                         workspace = {
-                            -- make language server aware of runtime files
                             library = {
                                 [vim.fn.expand("$VIMRUNTIME/lua")] = true,
                                 [vim.fn.stdpath("config") .. "/lua"] = true,
@@ -107,43 +110,18 @@ return {
                         },
                     },
                 },
+            })
 
-            }
-            lspconfig.solargraph.setup {
-                capabilities = cmp_capabilities,
-                on_attach = on_attach,
-            }
-            lspconfig.pyright.setup {
-                capabilities = cmp_capabilities,
-                on_attach = on_attach,
-            }
-            lspconfig.ruff.setup {
+            vim.lsp.config('ruff', {
                 on_attach = function(client, bufnr)
                     -- Disable hover in favor of Pyright
                     client.server_capabilities.hoverProvider = false
                 end
-            }
-            lspconfig.gopls.setup {
-                capabilities = cmp_capabilities,
-                on_attach = on_attach,
-            }
-            lspconfig.dockerls.setup {
-                capabilities = cmp_capabilities,
-                on_attach = on_attach,
-            }
-            lspconfig.docker_compose_language_service.setup {
-                capabilities = cmp_capabilities,
-                on_attach = on_attach,
-            }
-            lspconfig.sqlls.setup {
-                capabilities = cmp_capabilities,
-                on_attach = on_attach,
-            }
-            lspconfig.helm_ls.setup {
-                capabilities = cmp_capabilities,
+            })
+
+            vim.lsp.config('helm_ls', {
                 on_attach = function(client, bufnr)
                     on_attach(client, bufnr)
-                    -- Disable formatting for YAML files
                     client.server_capabilities.documentFormattingProvider = false
                     client.server_capabilities.documentRangeFormattingProvider = false
                 end,
@@ -154,26 +132,11 @@ return {
                         }
                     }
                 }
-            }
-            lspconfig.clangd.setup {
-                capabilities = cmp_capabilities,
-                on_attach = on_attach,
-            }
-
-            lspconfig.groovyls.setup {
-                capabilities = cmp_capabilities,
-                on_attach = on_attach,
-            }
-
-            lspconfig.rust_analyzer.setup {
-                capabilities = cmp_capabilities,
-                on_attach = on_attach,
-            }
+            })
 
             -- Auto Format only for some extensions
             vim.api.nvim_create_autocmd("BufWritePre", {
                 pattern = { "*.lua", "*.py", "*.go" },
-                buffer = buffer,
                 callback = function()
                     vim.lsp.buf.format { async = false }
                 end
