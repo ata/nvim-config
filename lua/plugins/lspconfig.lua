@@ -40,6 +40,14 @@ return {
             { "antosha417/nvim-lsp-file-operations", config = true },
         },
         config = function()
+            vim.diagnostic.config({
+                virtual_text = true,
+                signs = true,
+                underline = true,
+                update_in_insert = false,
+                float = { border = "rounded" },
+            })
+
             local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
             local keymap = vim.keymap
