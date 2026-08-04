@@ -1,5 +1,8 @@
 return {
-    'nvim-telescope/telescope.nvim', tag = '0.1.5',
+    -- Pinned to 0.1.x versions depend on nvim-treesitter's `master` branch
+    -- (`parsers.ft_to_lang`, `configs.is_enabled`) for previewer highlighting,
+    -- which no longer exists on `main`. 0.2.x uses `vim.treesitter` directly.
+    'nvim-telescope/telescope.nvim', tag = 'v0.2.2',
     dependencies = {
         'nvim-lua/plenary.nvim',
         {
