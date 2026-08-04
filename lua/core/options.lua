@@ -38,6 +38,7 @@ opt.showcmd = true          --  show commands as we type them
 opt.scrolloff = 4           --  scroll the window when we get near the edge
 opt.sidescrolloff = 10      --  scroll the window when we get near the edge
 opt.cursorline = true       --  .
+opt.conceallevel = 0        --  Don't hide quotes and other markup
 opt.ruler = true            --  show current line info (current/total)
 opt.rulerformat = '%=%l/%L' -- Format ruler
 opt.display = 'lastline'    -- When lines are  ropped at the screen bottom, show as much as possible
